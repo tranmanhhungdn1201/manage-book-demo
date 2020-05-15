@@ -1,0 +1,11 @@
+h1 Edit book
+	form(action="/books/update/" + book.id, method="POST")
+		label Title:
+		<br>
+		input(type="text", name="title", value=book.title)
+		<br>
+		label Description:
+		<br>
+		textarea(name="description")=book.description
+		<br>
+		button Submit

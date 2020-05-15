@@ -42,4 +42,23 @@ app.post('/books/create', (req, res) => {
   res.redirect('/books');
 });
 
+app.get('/books/edit/:id', (req, res) => {
+  var id = req.params.id;
+	res.render('books/edit', {
+    book: db.get('books').find({ id:id }).value()
+  });
+});
+
+app.post('/books/update/:id', (req, res) => {
+  var id = req.params.id;
+  db.get('books').push({
+    id: shortid.generate(),
+    title: req.body.title,
+    description: req.body.description
+  }).write();
+	res.render('books/edit', {
+    book: db.get('books').find({ id:id }).value()
+  });
+});
+
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
