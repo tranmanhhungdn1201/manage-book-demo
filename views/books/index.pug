@@ -2,10 +2,12 @@ h1 BookStore
 a(href="books/create") Create
 h3 List of book
 ul
-	each book in books
-		li
-			span=book.title
-			span &nbsp
-			a(href="books/edit/"+book.id) Edit
-			<br>
-			p=book.description
+ each book in books
+  li
+   span=book.title
+   span &nbsp
+   a(href="books/edit/"+book.id) Edit
+   span &nbsp
+   a(href="books/"+book.id+"/delete") Delete
+   <br>
+   p=book.description

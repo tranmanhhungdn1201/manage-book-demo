@@ -60,4 +60,10 @@ app.post('/books/update/:id', (req, res) => {
   });
 });
 
+app.get("/books/:id/delete", (req, res) => {
+  var id = req.params.id;
+  db.get('books').remove({ id: id }).write();
+  res.redirect('back');
+});
+
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
