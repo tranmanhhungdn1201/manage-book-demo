@@ -51,13 +51,12 @@ app.get('/books/edit/:id', (req, res) => {
 
 app.post('/books/update/:id', (req, res) => {
   var id = req.params.id;
-  db.get('books').push({
-    id: shortid.generate(),
+  db.get('books').find({ id:id }).assign({
     title: req.body.title,
     description: req.body.description
   }).write();
-	res.render('books/edit', {
-    book: db.get('books').find({ id:id }).value()
+	res.render('books/index', {
+    books:db.get('books').value()
   });
 });
 
