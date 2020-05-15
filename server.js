@@ -1,34 +1,45 @@
-// server.js
-// where your node app starts
-
-// we've started you off with Express (https://expressjs.com/)
-// but feel free to use whatever libraries or frameworks you'd like through `package.json`.
-const express = require("express");
+const express = require('express');
+const shortid = require('shortid');
 const app = express();
+const port = 3000;
+const low = require('lowdb')
+const FileSync = require('lowdb/adapters/FileSync')
+const bodyParser = require('body-parser')
 
-// our default array of dreams
-const dreams = [
-  "Find and count some sheep",
-  "Climb a really tall mountain",
-  "Wash the dishes"
-];
+app.use(bodyParser.json()) // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
-// make all the files in 'public' available
-// https://expressjs.com/en/starter/static-files.html
-app.use(express.static("public"));
+const adapter = new FileSync('db.json')
+const db = low(adapter)
 
-// https://expressjs.com/en/starter/basic-routing.html
-app.get("/", (request, response) => {
-  response.sendFile(__dirname + "/views/index.html");
+// Set some defaults (required if your JSON file is empty)
+db.defaults({ books: []})
+  .write()
+
+app.set('view engine', 'pug');
+app.set('views', './views');
+
+app.get('/', (req, res) => {
+	res.send('Hello World!');
 });
 
-// send the default array of dreams to the webpage
-app.get("/dreams", (request, response) => {
-  // express helps us take JS objects and send them as JSON
-  response.json(dreams);
+app.get('/books', (req, res) => {
+	res.render('books/index', {
+		books: db.get('books').value()
+	});
 });
 
-// listen for requests :)
-const listener = app.listen(process.env.PORT, () => {
-  console.log("Your app is listening on port " + listener.address().port);
+app.get('/books/create', (req, res) => {
+	res.render('books/create');
 });
+
+app.post('/books/create', (req, res) => {
+  db.get('books').push({
+    id: shortid.generate(),
+    title: req.body.title,
+    description: req.body.description
+  }).write();
+  res.redirect('/books');
+});
+
+app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
