@@ -7,3 +7,8 @@ ul
    span=transaction.username
    <br>
    span=transaction.book
+   <br>
+   if transaction.isComplete === true
+    span Completed
+   else
+    a(href="transactions/" + transaction.id + "/complete") Complete

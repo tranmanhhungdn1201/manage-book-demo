@@ -52,12 +52,14 @@
     {
       "id": "I-y3UqZs7",
       "userId": "I-y3UqZs5",
-      "bookId": "EU5Cyp2JJ"
+      "bookId": "EU5Cyp2JJ",
+      "isComplete": true
     },
     {
       "id": "mHqdxkb1m",
       "userId": "Bxquz602O",
-      "bookId": "EU5Cyp2JJ"
+      "bookId": "EU5Cyp2JJ",
+      "isComplete": false
     }
   ]
 }

@@ -8,8 +8,10 @@ module.exports.index = (req,res) => {
     let username = db.get('users').find({id:transaction.userId}).value().name;
     let book = db.get('books').find({id:transaction.bookId}).value().title;
     dataTransactions.push({
+      id: transaction.id,
       username:username,
-      book:book
+      book:book,
+      isComplete: transaction.isComplete
     });
   }
   res.render('transactions/index', {
@@ -33,4 +35,15 @@ module.exports.postCreate = (req,res) => {
   }).write();
   res.redirect('/transactions');
 };
+
+module.exports.complete = (req,res) => {
+  var id = shortid.generate();
+  db.get('transactions').find({id: id}).assign({
+    isComplete: true
+  }).write();
+  res.redirect('/transactions');
+};
+
+
+
 
