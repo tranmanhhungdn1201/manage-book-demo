@@ -16,10 +16,12 @@ block content
    ul(class="list-group")
     each book in books
      li(class="list-group-item")
+      label Title:&nbsp
       span=book.title
       span &nbsp
-      a(href="books/edit/"+book.id) Edit
+      a(class="btn btn-success btn-sm", href="books/edit/"+book.id) Edit
       span &nbsp
-      a(href="books/"+book.id+"/delete") Delete
+      a(class="btn btn-danger btn-sm", href="books/"+book.id+"/delete") Delete
       <br>
+      label Description:&nbsp
       p=book.description
