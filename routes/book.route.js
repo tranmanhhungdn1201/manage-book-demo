@@ -22,7 +22,7 @@ router.post('/create', (req, res) => {
     title: req.body.title,
     description: req.body.description
   }).write();
-  res.redirect('back');
+  res.redirect('/books');
 });
 
 router.get('/edit/:id', (req, res) => {

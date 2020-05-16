@@ -21,7 +21,7 @@ router.post('/create', (req,res) => {
     name: req.body.name,
     age: req.body.age
   }).write();
-  res.redirect('back');
+  res.redirect('/users');
 });
 
 router.get('/:id', (req,res) => {
