@@ -4,6 +4,7 @@ const app = express();
 const port = 3000;
 const bodyParser = require('body-parser')
 const db = require('./db');
+const userRoute = require('./routes/user.route');
 
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
@@ -58,4 +59,5 @@ app.get("/books/:id/delete", (req, res) => {
   res.redirect('back');
 });
 
+app.use('/users', userRoute);
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));

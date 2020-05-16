@@ -4,10 +4,10 @@ const router = express.Router();
 const shortid = require('shortid');
 const app = express();
 const bodyParser = require('body-parser')
-const db = require('./db');
+const db = require('../db');
 
 router.get('/', (req,res) => {
-  res.reder('users/index', {
+  res.render('users/index', {
     users : db.get('users').value()
   });
 });
@@ -23,7 +23,7 @@ router.post('/create', (req,res) => {
     name: req.body.name,
     age: req.body.age
   }).write();
-  res.render('users/create');
+  res.redirect('back');
 });
 
 router.get('/:id', (req,res) => {
@@ -48,7 +48,13 @@ router.post('/update/:id', (req,res) => {
     name: req.body.name,
     age: req.body.age
   }).write();
-  res.redirect('/');
+  res.redirect('/users');
+});
+
+router.get('/:id/delete', (req,res) => {
+  var id = req.params.id;
+  var user = db.get('users').remove({id:id}).write();
+  res.redirect('back');
 });
 
 module.exports = router;
