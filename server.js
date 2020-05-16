@@ -6,6 +6,8 @@ const userRoute = require('./routes/user.route');
 const bookRoute = require('./routes/book.route');
 const transactionRoute = require('./routes/transaction.route');
 app.use(express.static('public'));
+var assets = require('./assets');
+app.use("/assets", assets);
 
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-ur
