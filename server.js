@@ -11,7 +11,11 @@ app.use("/assets", assets);
 
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-ur
-
+var count = 1;
+app.use(function (req, res, next) {
+  console.log('cookie: ' + count++);
+  next()
+})
 app.set('view engine', 'pug');
 app.set('views', './views');
 
