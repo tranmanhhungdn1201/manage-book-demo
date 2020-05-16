@@ -38,6 +38,12 @@ module.exports.postCreate = (req,res) => {
 
 module.exports.complete = (req,res) => {
   var id = req.params.id;
+  if(!db.get('transactions').find({id: id}).value()){
+    res.redirect('/transactions', {
+      error: 'Id is valid'
+    });
+    return;
+  }
   db.get('transactions').find({id: id}).assign({
     isComplete: true
   }).write();

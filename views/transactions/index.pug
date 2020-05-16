@@ -2,6 +2,8 @@ extends ../common/common
 block content
   h1 transactions
   a(href="transactions/create") Create
+  if error
+    .alert.alert-danger=error
   h3 List of user
   ul
    each transaction in transactions
