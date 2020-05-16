@@ -10,7 +10,7 @@ router.post('/create', controller.postCreate);
 
 router.get('/edit/:id', controller.edit);
 
-router.post('/books/update/:id', controller.update);
+router.post('/update/:id', controller.update);
 
 router.get("/:id/delete", controller.delete);
 

@@ -34,7 +34,7 @@ module.exports.update = (req, res) => {
     title: req.body.title,
     description: req.body.description
   }).write();
-	res.render('books');
+	res.redirect('/books');
 };
 
 module.exports.delete = (req, res) => {
