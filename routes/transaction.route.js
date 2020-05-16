@@ -11,15 +11,19 @@ router.get('/', (req,res) => {
 });
 
 router.get('/create', (req,res) => {
-  res.render('transactions/create');
+  res.render('transactions/create', {
+    users : db.get('users').value(),
+    books : db.get('books').value()
+  });
 });
 
 router.post('/create', (req,res) => {
   var id = shortid.generate();
+  console.log(req.body);
   db.get('transactions').push({
     id: id,
-    name: req.body.name,
-    age: req.body.age
+    username: req.body.username,
+    book: req.body.book
   }).write();
   res.redirect('/transactions');
 });
