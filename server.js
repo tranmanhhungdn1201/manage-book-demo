@@ -5,6 +5,7 @@ const port = 3000;
 const userRoute = require('./routes/user.route');
 const bookRoute = require('./routes/book.route');
 const transactionRoute = require('./routes/transaction.route');
+app.use(express.static('public'));
 
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-ur
