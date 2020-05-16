@@ -1,9 +1,7 @@
-
 const express = require('express');
 const router = express.Router();
 const shortid = require('shortid');
 const app = express();
-const bodyParser = require('body-parser')
 const db = require('../db');
 
 router.get('/', (req,res) => {
