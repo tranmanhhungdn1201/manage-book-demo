@@ -37,7 +37,7 @@ module.exports.postCreate = (req,res) => {
 };
 
 module.exports.complete = (req,res) => {
-  var id = shortid.generate();
+  var id = req.params.id;
   db.get('transactions').find({id: id}).assign({
     isComplete: true
   }).write();
