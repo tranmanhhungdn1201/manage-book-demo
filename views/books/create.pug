@@ -1,11 +1,13 @@
-h1 Create book
-	form(action="/books/create", method="POST")
-		label Title:
-		<br>
-		input(type="text", name="title")
-		<br>
-		label Description:
-		<br>
-		textarea(name="description")
-		<br>
-		button Submit
+extends ../common/common
+block content
+  h1 Create book
+    form(action="/books/create", method="POST")
+      label Title:
+      <br>
+      input(type="text", name="title")
+      <br>
+      label Description:
+      <br>
+      textarea(name="description")
+      <br>
+      button Submit

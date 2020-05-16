@@ -1,17 +1,19 @@
-h1 BookStore
-a(href="books/create") Create book
-<br>
-a(href="users") View users
-<br>
-a(href="transactions") View transactions
-h3 List of book
-ul
- each book in books
-  li
-   span=book.title
-   span &nbsp
-   a(href="books/edit/"+book.id) Edit
-   span &nbsp
-   a(href="books/"+book.id+"/delete") Delete
-   <br>
-   p=book.description
+extends ../common/common
+block content
+ h1 BookStore
+ a(href="books/create") Create book
+ <br>
+ a(href="users") View users
+ <br>
+ a(href="transactions") View transactions
+ h3 List of book
+ ul
+  each book in books
+   li
+    span=book.title
+    span &nbsp
+    a(href="books/edit/"+book.id) Edit
+    span &nbsp
+    a(href="books/"+book.id+"/delete") Delete
+    <br>
+    p=book.description

@@ -1,14 +1,16 @@
-h1 transactions
-a(href="transactions/create") Create
-h3 List of user
-ul
- each transaction in transactions
-  li
-   span=transaction.username
-   <br>
-   span=transaction.book
-   <br>
-   if transaction.isComplete === true
-    span Completed
-   else
-    a(href="transactions/" + transaction.id + "/complete") Complete
+extends ../common/common
+block content
+  h1 transactions
+  a(href="transactions/create") Create
+  h3 List of user
+  ul
+   each transaction in transactions
+    li
+     span=transaction.username
+     <br>
+     span=transaction.book
+     <br>
+     if transaction.isComplete === true
+      span Completed
+     else
+      a(href="transactions/" + transaction.id + "/complete") Complete
