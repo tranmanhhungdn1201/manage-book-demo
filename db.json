@@ -48,5 +48,11 @@
       "age": "22"
     }
   ],
-  "transactions": []
+  "transactions": [
+    {
+      "id": "I-y3UqZs7",
+      "userId": "I-y3UqZs5",
+      "bookId": "EU5Cyp2JJ"
+    }
+  ]
 }
