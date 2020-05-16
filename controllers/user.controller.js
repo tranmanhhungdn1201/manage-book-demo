@@ -6,11 +6,22 @@ module.exports.index = (req,res) => {
     users : db.get('users').value()
   });
 };
+
 module.exports.create = (req,res) => {
   res.render('users/create');
 };
+
 module.exports.postCreate = (req,res) => {
   var id = shortid.generate();
+  var errors = [];
+  if(req.body.name.length > 30){
+    errors.push('Name must be less than 30 characters')
+    res.render('users/create', {
+      errors : errors,
+      value : req.body
+    });
+    return;
+  }
   db.get('users').push({
     id: id,
     name: req.body.name,
@@ -18,6 +29,7 @@ module.exports.postCreate = (req,res) => {
   }).write();
   res.redirect('/users');
 };
+
 module.exports.show = (req,res) => {
   var id = req.params.id;
   var user = db.get('users').find({id:id}).value();

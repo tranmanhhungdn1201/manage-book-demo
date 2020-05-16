@@ -1,13 +1,16 @@
 extends ../common/common
 block content
-  h1 Create user
+  .container
+    h1.text-center Create user
+    if errors
+      each error in errors
+        .alert.alert-danger=error
     form(action="/users/create", method="POST")
-      label Name:
-      <br>
-      input(type="text", name="name")
-      <br>
-      label Age:
-      <br>
-      input(type="text", name="age")
-      <br>
-      button Submit
+      .form-group
+        label Name:
+        input.form-control(type="text", name="name", value=value ? value.name : "")
+      .form-group
+        label Age:
+        input.form-control(type="text", name="age", value=value ? value.age : "")
+      .form-group
+        button.btn.btn-success Submit
