@@ -7,6 +7,9 @@ block content
         .alert.alert-danger=error
     form(action="/users/create", method="POST")
       .form-group
+        label Email:
+        input.form-control(type="text", name="email", value=value ? value.email : "")
+      .form-group
         label Name:
         input.form-control(type="text", name="name", value=value ? value.name : "")
       .form-group

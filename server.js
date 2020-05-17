@@ -7,6 +7,9 @@ const bookRoute = require('./routes/book.route');
 const loginRoute = require('./routes/login.route');
 const transactionRoute = require('./routes/transaction.route');
 const authMiddleware = require('./middleware/auth.middleware');
+var cookieParser = require('cookie-parser');
+
+app.use(cookieParser());
 app.use(express.static('public'));
 var assets = require('./assets');
 app.use("/assets", assets);

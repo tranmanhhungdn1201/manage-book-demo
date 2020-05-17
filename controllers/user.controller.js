@@ -15,6 +15,7 @@ module.exports.postCreate = (req,res) => {
   var id = shortid.generate();
   db.get('users').push({
     id: id,
+    email: req.body.email,
     name: req.body.name,
     age: req.body.age
   }).write();

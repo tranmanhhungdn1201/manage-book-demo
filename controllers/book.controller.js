@@ -2,9 +2,11 @@ const db = require('../db');
 const shortid = require('shortid');
 
 module.exports.index = (req, res) => {
-  res.cookie("user-id", 12345);
+  var userId = req.cookies.userId;
+  var userLogin = db.get('users').find({id:userId}).value();
 	res.render('books/index', {
-		books: db.get('books').value()
+		books: db.get('books').value(),
+    userLogin: userLogin
 	});
 };
 

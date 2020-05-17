@@ -9,8 +9,9 @@ block content
           a(class="nav-item nav-link", href="books/create") Create book
         li(class="nav-item mr-2")
           a(class="nav-item nav-link", href="users") Users
-        li(class="nav-item")
-          a(class="nav-item nav-link", href="transactions") Transactions
+        if userLogin.isAdmin
+          li(class="nav-item")
+            a(class="nav-item nav-link", href="transactions") Transactions
  h3(class="text-center") List of book
  div(class="container")
    ul(class="list-group")
