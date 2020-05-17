@@ -4,6 +4,9 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 module.exports.index = (req,res) => {
+  var page = req.params.page;
+  var perPage = 2;
+  var start = page*(perPage-1)
   res.render('users/index', {
     users : db.get('users').value()
   });
