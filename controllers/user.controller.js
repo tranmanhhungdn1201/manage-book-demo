@@ -4,11 +4,16 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 module.exports.index = (req,res) => {
-  var page = req.params.page;
+  var page = parseInt(req.query.page) || 1;
   var perPage = 2;
-  var start = page*(perPage-1)
+  var start = perPage*(page-1);
+  var end = page*perPage;
+  var users = db.get('users').value();
   res.render('users/index', {
-    users : db.get('users').value()
+    users : users.slice(start, end),
+    page: {
+      pageLength : users.length/2
+  }
   });
 };
 
