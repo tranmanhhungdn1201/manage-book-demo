@@ -1,4 +1,5 @@
-const md5 = require('md5');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 const db = require('../db');
 
 module.exports.index = (req,res) => {
@@ -34,15 +35,18 @@ module.exports.postLogin = (req, res, next) => {
     });
     return;
   }
-  var hashPassword = md5(password);
-  if(user.password !== hashPassword){
-    errors.push('Wrong password')
-    res.render('login/index', {
-      errors : errors,
-      value: req.body
-    });
-    return;
-  }
+  bcrypt.compare(password, user.password, function(err, result) {
+    
+    if(!result){
+      errors.push('Wrong password')
+      res.render('login/index', {
+        errors : errors,
+        value: req.body
+      });
+      return;
+    }
+  });
+
   res.cookie('userId', user.id);
   res.redirect('/books');
 };
