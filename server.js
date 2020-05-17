@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const port = 3000;
 const userRoute = require('./routes/user.route');
 const bookRoute = require('./routes/book.route');
+const loginRoute = require('./routes/login.route');
 const transactionRoute = require('./routes/transaction.route');
 app.use(express.static('public'));
 var assets = require('./assets');
@@ -23,6 +24,7 @@ app.get('/', (req, res) => {
 	res.send('Hello World!');
 });
 
+app.use('/login', loginRoute);
 app.use('/transactions', transactionRoute);
 app.use('/books', bookRoute);
 app.use('/users', userRoute);

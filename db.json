@@ -25,16 +25,22 @@
     {
       "id": "y-9VmtDQn",
       "name": "hung1edit",
+      "password": "12345",
+      "email": "hung1@gmail.com",
       "age": "22"
     },
     {
       "id": "Bxquz602O",
       "name": "hung 4",
+      "password": "12345",
+      "email": "hung2@gmail.com",
       "age": "22"
     },
     {
       "id": "uxcQaULvk",
       "name": "hung pro",
+      "password": "12345",
+      "email": "hung3@gmail.com",
       "age": "1"
     },
     {
@@ -45,11 +51,15 @@
     {
       "id": "ourMfyzE1",
       "name": "hung tran 1",
+      "password": "12345",
+      "email": "hung4@gmail.com",
       "age": "2222"
     },
     {
       "id": "nu2ObymjS",
       "name": "21323232321543654765786877",
+      "password": "12345",
+      "email": "hung5@gmail.com",
       "age": ""
     }
   ],
