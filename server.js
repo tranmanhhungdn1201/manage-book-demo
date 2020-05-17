@@ -30,13 +30,18 @@ app.get('/', (req, res) => {
 });
 app.get('/send-mail', (req, res) =>{
   const msg = {
-    to: 'test@example.com',
-    from: 'test@example.com',
+    to: 'tranmanh.hung@gmail.com',
+    from: 'anhboy2002@gmail.com',
     subject: 'Sending with Twilio SendGrid is Fun',
     text: 'and easy to do anywhere, even with Node.js',
     html: '<strong>and easy to do anywhere, even with Node.js</strong>',
   };
-sgMail.send(msg);
+  sgMail.send(msg).then(() => {
+      console.log('Message sent')
+  }).catch((error) => {
+      console.log(error.response.body)
+      // console.log(error.response.body.errors[0].message)
+  })
 })
 app.use('/login', loginRoute);
 app.use('/transactions', transactionRoute);
