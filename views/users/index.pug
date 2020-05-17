@@ -20,16 +20,13 @@ block content
             a.btn.btn-danger.btn-sm(href="users/" + user.id + "/delete") Delete
   nav.float-right(aria-label='Page navigation example')
     ul.pagination
-      - var n = 0;
       li.page-item
         a.page-link(href='#') Previous
-      while n < page.pageLength
-      li= n++
-        li.page-item.active
-          a.page-link.active(href='?page='+) 1
-        li.page-item
-          a.page-link(href='?page=2') 2
-        li.page-item
-          a.page-link(href='?page=3') 3
-        li.page-item
-          a.page-link(href='?page=1') Next
+      li.page-item
+        a.page-link(href='?page=1') 1
+      li.page-item
+        a.page-link(href='?page=2') 2
+      li.page-item
+        a.page-link(href='?page=3') 3
+      li.page-item
+        a.page-link(href='#') Next
