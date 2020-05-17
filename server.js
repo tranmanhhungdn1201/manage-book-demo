@@ -6,6 +6,7 @@ const userRoute = require('./routes/user.route');
 const bookRoute = require('./routes/book.route');
 const loginRoute = require('./routes/login.route');
 const transactionRoute = require('./routes/transaction.route');
+const authMiddleware = require('./middleware/auth.middleware');
 app.use(express.static('public'));
 var assets = require('./assets');
 app.use("/assets", assets);
@@ -26,6 +27,6 @@ app.get('/', (req, res) => {
 
 app.use('/login', loginRoute);
 app.use('/transactions', transactionRoute);
-app.use('/books', bookRoute);
+app.use('/books', authMiddleware.requiredAuth, bookRoute);
 app.use('/users', userRoute);
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));

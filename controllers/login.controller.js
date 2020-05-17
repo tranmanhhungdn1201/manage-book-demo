@@ -35,12 +35,12 @@ module.exports.postLogin = (req, res, next) => {
   }
   if(user.password !== password){
     errors.push('Wrong password')
-    res.render('/login', {
+    res.render('login/index', {
       errors : errors,
-      value: res.body
+      value: req.body
     });
     return;
   }
-  res.cookie('user-id', user.id);
-  next();
+  res.cookie('userId', user.id);
+  res.redirect('/books');
 };
