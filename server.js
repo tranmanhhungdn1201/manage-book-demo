@@ -9,7 +9,7 @@ const transactionRoute = require('./routes/transaction.route');
 const authMiddleware = require('./middleware/auth.middleware');
 var cookieParser = require('cookie-parser');
 
-app.use(cookieParser());
+app.use(cookieParser('1dsadasdbfdw'));
 app.use(express.static('public'));
 var assets = require('./assets');
 app.use("/assets", assets);

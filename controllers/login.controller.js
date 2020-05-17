@@ -7,14 +7,16 @@ module.exports.index = (req,res) => {
 };
 
 module.exports.postLogin = (req, res, next) => {
-  var wrongLoginCount = res.cookies.wrongLoginCount ? res.cookies.wrongLoginCount : 0;
+  var errors = [];
+  var wrongLoginCount = req.cookies.wrongLoginCount ? req.cookies.wrongLoginCount : 0;
   if(+wrongLoginCount === 4){
+    errors.push('Login fail too many times!');
     res.render('login/index', {
       errors : errors,
       value: res.body
     });
+    return;
   }
-  var errors = [];
   var checkLogin = true;
   if(!req.body.email){
     errors.push('Email is required');
@@ -22,7 +24,7 @@ module.exports.postLogin = (req, res, next) => {
   }
   if(!req.body.password){
       errors.push('Password is required');
-    checkLogin = false;
+      checkLogin = false;
   }
   if(!checkLogin){
     res.render('login/index', {
@@ -44,7 +46,8 @@ module.exports.postLogin = (req, res, next) => {
   }
   bcrypt.compare(password, user.password, function(err, result) {
       if(!result){
-        res.cookie('wrongLoginCount', wrongLoginCount);
+        res.cookie('wrongLoginCount', ++wrongLoginCount);
+        console.log(wrongLoginCount);
         errors.push('Wrong password')
         console.log(errors);
         res.render('login/index', {
@@ -53,7 +56,9 @@ module.exports.postLogin = (req, res, next) => {
         });
         return true;
       }
-      res.cookie('userId', user.id);
+    res.cookie('userId', user.id, {
+      signed : true
+    });
     res.redirect('/books');
   });
 
