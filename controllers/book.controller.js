@@ -3,10 +3,8 @@ const shortid = require('shortid');
 
 module.exports.index = (req, res) => {
   var userId = req.cookies.userId;
-  var userLogin = db.get('users').find({id:userId}).value();
 	res.render('books/index', {
-		books: db.get('books').value(),
-    userLogin: userLogin
+		books: db.get('books').value()
 	});
 };
 
