@@ -8,7 +8,8 @@ const loginRoute = require('./routes/login.route');
 const transactionRoute = require('./routes/transaction.route');
 const authMiddleware = require('./middleware/auth.middleware');
 var cookieParser = require('cookie-parser');
-
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 app.use(cookieParser('1dsadasdbfdw'));
 app.use(express.static('public'));
 var assets = require('./assets');
@@ -27,7 +28,16 @@ app.set('views', './views');
 app.get('/', (req, res) => {
 	res.send('Hello World!');
 });
-
+app.get('/send-mail', (req, res) =>{
+  const msg = {
+    to: 'test@example.com',
+    from: 'test@example.com',
+    subject: 'Sending with Twilio SendGrid is Fun',
+    text: 'and easy to do anywhere, even with Node.js',
+    html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+  };
+sgMail.send(msg);
+})
 app.use('/login', loginRoute);
 app.use('/transactions', transactionRoute);
 app.use('/books', authMiddleware.requiredAuth, bookRoute);
