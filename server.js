@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
 });
 app.get('/send-mail', (req, res) =>{
   const msg = {
-    to: 'tranmanh.hung@gmail.com',
+    to: 'tranmanh.hungdn1201@gmail.com',
     from: 'anhboy2002@gmail.com',
     subject: 'Sending with Twilio SendGrid is Fun',
     text: 'and easy to do anywhere, even with Node.js',
