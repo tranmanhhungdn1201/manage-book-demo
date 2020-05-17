@@ -12,12 +12,14 @@ module.exports.create = (req,res) => {
 };
 
 module.exports.postCreate = (req,res) => {
+  var defaultPassword = "4297f44b13955235245b2497399d7a93"; //123123
   var id = shortid.generate();
   db.get('users').push({
     id: id,
     email: req.body.email,
     name: req.body.name,
-    age: req.body.age
+    age: req.body.age,
+    password: defaultPassword
   }).write();
   res.redirect('/users');
 };

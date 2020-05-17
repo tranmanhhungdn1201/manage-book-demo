@@ -25,7 +25,7 @@
     {
       "id": "y-9VmtDQn",
       "name": "hung1edit",
-      "password": "12345",
+      "password": "4297f44b13955235245b2497399d7a93",
       "email": "hung1@gmail.com",
       "age": "22",
       "isAdmin": true
@@ -33,7 +33,7 @@
     {
       "id": "Bxquz602O",
       "name": "hung 4",
-      "password": "12345",
+      "password": "4297f44b13955235245b2497399d7a93",
       "email": "hung2@gmail.com",
       "age": "22",
       "isAdmin": false
@@ -41,7 +41,7 @@
     {
       "id": "uxcQaULvk",
       "name": "hung pro",
-      "password": "12345",
+      "password": "4297f44b13955235245b2497399d7a93",
       "email": "hung3@gmail.com",
       "age": "1",
       "isAdmin": false
@@ -49,13 +49,15 @@
     {
       "id": "I-y3UqZs5",
       "name": "hung proooo2",
+      "password": "4297f44b13955235245b2497399d7a93",
+      "email": "hung5@gmail.com",
       "age": "22",
       "isAdmin": false
     },
     {
       "id": "ourMfyzE1",
       "name": "hung tran 1",
-      "password": "12345",
+      "password": "4297f44b13955235245b2497399d7a93",
       "email": "hung4@gmail.com",
       "age": "2222",
       "isAdmin": false
@@ -63,10 +65,17 @@
     {
       "id": "nu2ObymjS",
       "name": "21323232321543654765786877",
-      "password": "12345",
+      "password": "4297f44b13955235245b2497399d7a93",
       "email": "hung5@gmail.com",
       "age": "",
       "isAdmin": false
+    },
+    {
+      "id": "cv2Xe7C1y",
+      "email": "anhboy2002@gmail.com",
+      "name": "hung tran",
+      "age": "22",
+      "password": "123123"
     }
   ],
   "transactions": [

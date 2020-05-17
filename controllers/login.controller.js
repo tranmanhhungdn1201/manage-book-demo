@@ -1,3 +1,4 @@
+const md5 = require('md5');
 const db = require('../db');
 
 module.exports.index = (req,res) => {
@@ -33,7 +34,8 @@ module.exports.postLogin = (req, res, next) => {
     });
     return;
   }
-  if(user.password !== password){
+  var hashPassword = md5(password);
+  if(user.password !== hashPassword){
     errors.push('Wrong password')
     res.render('login/index', {
       errors : errors,
