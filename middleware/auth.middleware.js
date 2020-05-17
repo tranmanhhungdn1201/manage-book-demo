@@ -12,5 +12,6 @@ module.exports.requiredAuth = (req, res, next) => {
     return;
   }
   res.locals.userLogin = user;
+  res.clearCookie('wrongLoginCount');
   next();
 };
