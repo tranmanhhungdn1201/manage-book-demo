@@ -1,5 +1,7 @@
 const db = require('../db');
 const shortid = require('shortid');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 module.exports.index = (req,res) => {
   res.render('users/index', {
@@ -12,15 +14,19 @@ module.exports.create = (req,res) => {
 };
 
 module.exports.postCreate = (req,res) => {
-  var defaultPassword = "4297f44b13955235245b2497399d7a93"; //123123
-  var id = shortid.generate();
-  db.get('users').push({
-    id: id,
-    email: req.body.email,
-    name: req.body.name,
-    age: req.body.age,
-    password: defaultPassword
-  }).write();
+  var defaultPassword = "123123"; //123123
+  bcrypt.genSalt(saltRounds, function(err, salt) {
+    bcrypt.hash(defaultPassword, salt, function(err, hash) {
+        var id = shortid.generate();
+        db.get('users').push({
+          id: id,
+          email: req.body.email,
+          name: req.body.name,
+          age: req.body.age,
+          password: hash
+          }).write();
+        });
+  });
   res.redirect('/users');
 };
 
