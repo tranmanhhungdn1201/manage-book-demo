@@ -6,12 +6,41 @@ module.exports.index = (req,res) => {
 
 module.exports.postLogin = (req, res, next) => {
   var errors = [];
+  var checkLogin = true;
   if(!req.body.email){
     errors.push('Email is required');
+    checkLogin = false;
   }
   if(!req.body.password){
-    errors.push('Password is required');
+      errors.push('Password is required');
+    checkLogin = false;
   }
-  
-  
+  if(!checkLogin){
+    res.render('login/index', {
+      errors : errors,
+      value: req.body
+    });
+    return;
+  }
+  var email = req.body.email;
+  var password = req.body.password;
+  var user = db.get('users').find({email: email}).value();
+  if(!user){
+    errors.push('User\'s not exist')
+    res.render('login/index', {
+      errors : errors,
+      value: res.body
+    });
+    return;
+  }
+  if(user.password !== password){
+    errors.push('Wrong password')
+    res.render('/login', {
+      errors : errors,
+      value: res.body
+    });
+    return;
+  }
+  res.cookie('user-id', user.id);
+  next();
 };
