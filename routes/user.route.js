@@ -4,7 +4,6 @@ const controller = require('../controllers/user.controller');
 const validate = require('../validate/user.validate.js');
 const multer = require('multer');
 const upload = multer({dest:'./public/uploads/'});
-
 router.get('/', controller.index);
 
 router.get('/create', controller.create);
@@ -22,5 +21,9 @@ router.get('/:id/edit', controller.edit);
 router.post('/update/:id', controller.update);
 
 router.get('/:id/delete', controller.delete);
+
+router.get('/profile', controller.profile);
+
+router.post('/profile', controller.updateAvatar);
 
 module.exports = router;
