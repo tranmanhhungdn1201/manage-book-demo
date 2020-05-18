@@ -31,6 +31,7 @@ module.exports.postCreate = (req,res) => {
           email: req.body.email,
           name: req.body.name,
           age: req.body.age,
+          avatar: req.body.avatar,
           password: hash
           }).write();
         });

@@ -22,10 +22,11 @@ block content
     ul.pagination
       li.page-item
         a.page-link(href='#') Previous
-      - var n = 0;
-      while n < page.pageLength
-      -n++
-        li.page-item
-        a.page-link(href='?page='+n)=n
       li.page-item
-      a.page-link(href='#') Next
+        a.page-link(href='?page=1') 1
+      li.page-item
+        a.page-link(href='?page=2') 2
+      li.page-item
+        a.page-link(href='?page=3') 3
+      li.page-item
+        a.page-link(href='#') Next
