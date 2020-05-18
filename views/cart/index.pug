@@ -1,19 +1,6 @@
 extends ../common/common
 block content
- header
-  nav(class="navbar navbar-expand-lg navbar-light bg-light")
-    img(src="/assets/favicon.png", height="30", width="100")
-    div(class="navbar-nav")
-      if userLogin
-        ul(class="nav justify-content-center")
-          li(class="nav-item mr-2")
-            a(class="nav-item nav-link", href="books/create") Create book
-          li(class="nav-item mr-2")
-            a(class="nav-item nav-link", href="users") Users
-          if userLogin && userLogin.isAdmin
-            li(class="nav-item")
-              a(class="nav-item nav-link", href="transactions") Transactions
- h3(class="text-center") List of book
+ h3(class="text-center") List of borrow book
  div(class="container")
    table.table
     tr
@@ -24,11 +11,8 @@ block content
       each book in books
         tr
           td
-              img(src=book.image, width="64")
-          td=book.title
-          td=book.description
+              img(src=book.book.image, width="64")
+          td=book.book.title
+          td=book.book.description
           td
-            if userLogin && userLogin.isAdmin
-              a.btn.btn-info.btn-sm.mr-2(href="books/edit/"+book.id) Edit
-              a.btn.btn-danger.btn-sm(href="books/"+book.id+"/delete") Delete
-            a.btn.btn-info.btn-sm(href="cart/add-to-cart/"+book.id) Add to cart
+    a.btn.btn-success(href="cart/borrow") Brrown Book
