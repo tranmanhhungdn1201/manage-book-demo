@@ -5,5 +5,7 @@ module.exports.profile = (req,res) => {
 };
 
 module.exports.updateAvatar = (req,res) => {
+  console.log(req.body);
+  return;
   res.render('profile/index');
 };
