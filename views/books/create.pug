@@ -1,13 +1,16 @@
 extends ../common/common
 block content
-  h1 Create book
-    form(action="/books/create", method="POST")
-      label Title:
-      <br>
-      input(type="text", name="title")
-      <br>
-      label Description:
-      <br>
-      textarea(name="description")
-      <br>
-      button Submit
+  .container
+    h1 Create book
+    form(action="/books/create", method="POST", , enctype="multipart/form-data")
+      .form-group
+        label Title:
+        input.form-control(type="text", name="title", value=value ? value.email : "")
+      .form-group
+        label Description:
+        input.form-control(type="text", name="description", value=value ? value.name : "")
+      .form-group
+        label Image:
+        input.form-control(type="file", name="image", value=value ? value.age : "")
+      .form-group
+      button.btn.btn-success Create

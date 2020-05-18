@@ -1,5 +1,6 @@
 const db = require('../db');
 const shortid = require('shortid');
+const cloudinary = require('cloudinary').v2
 
 module.exports.index = (req, res) => {
   var userId = req.signedCookies.userId;
@@ -15,12 +16,24 @@ module.exports.create = (req, res) => {
 };
 
 module.exports.postCreate = (req, res) => {
-  console.log(req.body);
-  db.get('books').push({
-    id: shortid.generate(),
-    title: req.body.title,
-    description: req.body.description
-  }).write();
+  const path = req.file.path;
+  const uniqueFilename = new Date().toISOString();
+    cloudinary.uploader.upload(
+      path,
+      { public_id: 'books/'+ uniqueFilename, tags: `books` },
+      function(err, image) {
+        if (err) return res.send(err)
+        console.log('file uploaded to Cloudinary');
+        console.log(image);
+        db.get('books').push({
+          id: shortid.generate(),
+          title: req.body.title,
+          description: req.body.description,
+          image: image.url
+        }).write();
+      }
+    )
+ 
   res.redirect('/books');
 };
 
