@@ -3,6 +3,7 @@ block content
   h1 Update profile
     form(action="", method="POST", enctype="multipart/form-data")
       .form-group
+        =userLogin.avatar
         if(userLogin.avatar)
           img(src=userLogin.avatar, width="100")
         else
