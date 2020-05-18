@@ -6,9 +6,11 @@ const userRoute = require('./routes/user.route');
 const bookRoute = require('./routes/book.route');
 const loginRoute = require('./routes/login.route');
 const profileRoute = require('./routes/profile.route');
+const cartRoute = require('./routes/cart.route');
 const transactionRoute = require('./routes/transaction.route');
 const authMiddleware = require('./middleware/auth.middleware');
 const sessionMiddleware = require('./middleware/session.middleware');
+
 var cookieParser = require('cookie-parser');
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -51,4 +53,5 @@ app.use('/transactions', authMiddleware.requiredAuth, transactionRoute);
 app.use('/books', bookRoute);
 app.use('/users', authMiddleware.requiredAuth, userRoute);
 app.use('/profile', authMiddleware.requiredAuth, profileRoute);
+app.use('/cart', cartRoute);
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));

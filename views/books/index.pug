@@ -24,11 +24,11 @@ block content
       each book in books
         tr
           td
-              img(src="https://res.cloudinary.com/dkyjdrbdj/image/upload/v1589807759/samples/imagecon-group.jpg", ww)
+              img(src=book.image, width="64")
           td=book.title
           td=book.description
           td
             if userLogin && userLogin.isAdmin
               a.btn.btn-info.btn-sm.mr-2(href="books/edit/"+book.id) Edit
               a.btn.btn-danger.btn-sm(href="books/"+book.id+"/delete") Delete
-            a.btn.btn-info.btn-sm(href="add-to-cart/"+book.id) Add to cart
+            a.btn.btn-info.btn-sm(href="cart/add-to-cart/"+book.id) Add to cart
