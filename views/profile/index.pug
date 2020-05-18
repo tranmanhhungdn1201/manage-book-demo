@@ -1,0 +1,9 @@
+extends ../common/common
+block content
+  h1 Update profile
+    form(action="", method="POST", enctype="multipart/form-data")
+      .form-group
+        label Avatar:
+        input.form-control(type="file", name="avatar")
+      .form-group
+        button.btn.btn-success Submit

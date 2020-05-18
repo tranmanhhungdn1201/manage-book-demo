@@ -44,6 +44,7 @@ module.exports.postCreate = (req,res) => {
 module.exports.show = (req,res) => {
   var id = req.params.id;
   var user = db.get('users').find({id:id}).value();
+  console.log(user);
   res.render('users/show',{
     user: user
   });
@@ -68,8 +69,4 @@ module.exports.delete = (req,res) => {
   var id = req.params.id;
   var user = db.get('users').remove({id:id}).write();
   res.redirect('back');
-};
-
-module.exports.profile = (req,res) => {
-  res.render('users/profile');
 };

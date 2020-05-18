@@ -22,8 +22,4 @@ router.post('/update/:id', controller.update);
 
 router.get('/:id/delete', controller.delete);
 
-router.get('/profile', controller.profile);
-
-router.post('/profile', controller.updateAvatar);
-
 module.exports = router;
