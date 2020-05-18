@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-
 var count = 1;
 app.use(function (req, res, next) {
   console.log('cookie: ' + count++);
-  next()
+  next();
 })
 app.set('view engine', 'pug');
 app.set('views', './views');
@@ -45,9 +45,9 @@ app.get('/send-mail', (req, res) =>{
   })
 })
 app.use('/login', loginRoute);
-app.use('/transactions', transactionRoute);
+app.use('/transactions', authMiddleware.requiredAuth, transactionRoute);
 app.use('/books', authMiddleware.requiredAuth, bookRoute);
-app.use('/users', userRoute);
-app.use('/profile', profileRoute);
+app.use('/users', authMiddleware.requiredAuth, userRoute);
+app.use('/profile', authMiddleware.requiredAuth, profileRoute);
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
