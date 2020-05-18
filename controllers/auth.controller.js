@@ -1,6 +1,6 @@
 const db = require('../db');
 const multer = require('multer');
-var upload = multer({ dest: 'public/uploads/' })
+var upload = multer();
 const cloudinary = require('cloudinary').v2
 cloudinary.config({
   cloud_name: 'dkyjdrbdj',
@@ -12,14 +12,17 @@ module.exports.profile = (req,res) => {
 };
 
 module.exports.updateAvatar = (req,res) => {
-  upload(req, res, function (err) {
-    if (err) {
-      // This is a good practice when you want to handle your errors differently
+  const path = req.file.path;
+  var user = db.get('users').find({id: req.signedCookies.userId}).value();
+  const uniqueFilename = new Date().toISOString();
+    cloudinary.uploader.upload(
+      path,
+      { public_id: `profile/${uniqueFilename}`, tags: `users` },
+      function(err, image) {
+        if (err) return res.send(err)
+        console.log('file uploaded to Cloudinary');
+        user.
+      }
+    )
 
-      return
-    }
-  console.log(req.body);
-    console.log(req.file)
-    // Everything went fine 
-  })
 };
