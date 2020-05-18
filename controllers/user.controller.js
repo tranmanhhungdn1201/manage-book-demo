@@ -2,6 +2,7 @@ const db = require('../db');
 const shortid = require('shortid');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+var cloudinary = require('cloudinary').v2;
 
 module.exports.index = (req,res) => {
   var page = parseInt(req.query.page) || 1;
@@ -26,6 +27,12 @@ module.exports.postCreate = (req,res) => {
   bcrypt.genSalt(saltRounds, function(err, salt) {
     bcrypt.hash(defaultPassword, salt, function(err, hash) {
         var id = shortid.generate();
+        cloudinary.uploader.upload(req.body.avatar, 
+         function(error, result){
+          console.log(result)
+         });
+      console.log(req.body);
+      return;
         db.get('users').push({
           id: id,
           email: req.body.email,

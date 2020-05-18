@@ -9,7 +9,11 @@ router.get('/', controller.index);
 
 router.get('/create', controller.create);
 
-router.post('/create', validate.postCreate, controller.postCreate);
+router.post('/create',
+            upload.single('avatar'),
+            validate.postCreate,
+            controller.postCreate
+           );
 
 router.get('/:id', controller.show);
 

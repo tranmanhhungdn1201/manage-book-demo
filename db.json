@@ -83,6 +83,13 @@
       "name": "hung tran11",
       "age": "22",
       "password": "$2b$10$gikeZ.Rd7611HQry0cxah.QQ3QcbNVSXfiuN2yy2oKIft3dXiBqfy"
+    },
+    {
+      "id": "vnsU4arTf",
+      "email": "anhboy2001@gmail.com",
+      "name": "hung tran",
+      "age": "22",
+      "password": "$2b$10$tLA5mWAoLGnbbBSuhiLIpuXj9IGqiLze1ZAgxAkq1pRuKxWDZSdwS"
     }
   ],
   "transactions": [
