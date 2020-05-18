@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
       signed : true
     });
     db.get('sessions').push({
-      sessionId: sessionId
+      id: sessionId
     }).write();
   }
   next();
