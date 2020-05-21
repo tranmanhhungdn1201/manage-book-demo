@@ -2,6 +2,7 @@ const db = require('../db');
 const shortid = require('shortid');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const user = require('../models/user.model');
 
 module.exports.index = (req,res) => {
   var page = parseInt(req.query.page) || 1;

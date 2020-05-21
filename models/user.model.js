@@ -10,6 +10,7 @@ var userSchema = new Schema({
   isAdmin: Boolean
 });
 
-var User = mongoose.model('User', userSchema)
+var User = mongoose.model('User', userSchema, 'Users');
 
-mongoose.connect(process.env.MONGO_CLUSTER_URI)
+// mongoose.connect(process.env.MONGO_CLUSTER_URI)
+module.exports.User;
