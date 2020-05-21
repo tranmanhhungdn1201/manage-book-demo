@@ -9,6 +9,7 @@ module.exports.index = (req,res) => {
     console.log(users);
     return;
   });
+
   // var page = parseInt(req.query.page) || 1;
   // var perPage = 2;
   // var start = perPage*(page-1);
