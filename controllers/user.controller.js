@@ -7,9 +7,8 @@ const User = require('../models/user.model');
 module.exports.index = (req,res) => {
   User.find().then(function(users){
     console.log(users);
-    return;
+    console.log(users);
   });
-
   // var page = parseInt(req.query.page) || 1;
   // var perPage = 2;
   // var start = perPage*(page-1);
