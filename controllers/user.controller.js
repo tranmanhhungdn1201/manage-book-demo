@@ -2,20 +2,24 @@ const db = require('../db');
 const shortid = require('shortid');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-const user = require('../models/user.model');
+const User = require('../models/user.model');
 
 module.exports.index = (req,res) => {
-  var page = parseInt(req.query.page) || 1;
-  var perPage = 2;
-  var start = perPage*(page-1);
-  var end = page*perPage;
-  var users = db.get('users').value();
-  res.render('users/index', {
-    users : users.slice(start, end),
-    page: {
-      pageLength : users.length/2
-  }
+  User.find().then(function(users){
+    console.log(users);
+    return;
   });
+  // var page = parseInt(req.query.page) || 1;
+  // var perPage = 2;
+  // var start = perPage*(page-1);
+  // var end = page*perPage;
+  // var users = db.get('users').value();
+  // res.render('users/index', {
+  //   users : users.slice(start, end),
+  //   page: {
+  //     pageLength : users.length/2
+  // }
+  // });
 };
 
 module.exports.create = (req,res) => {

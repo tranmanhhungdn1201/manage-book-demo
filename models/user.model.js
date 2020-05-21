@@ -1,4 +1,4 @@
-var mongoose = require('mongoose')
+var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema
 var userSchema = new Schema({
@@ -13,4 +13,4 @@ var userSchema = new Schema({
 var User = mongoose.model('User', userSchema, 'Users');
 
 // mongoose.connect(process.env.MONGO_CLUSTER_URI)
-module.exports.User;
+module.exports = User;
