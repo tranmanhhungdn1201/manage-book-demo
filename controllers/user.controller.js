@@ -2,8 +2,6 @@ const db = require('../db');
 const shortid = require('shortid');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-var mongoose = require('mongoose')
-mongoose.connect(process.env.MONGO_CLUSTER_URI)
 
 module.exports.index = (req,res) => {
   var page = parseInt(req.query.page) || 1;
