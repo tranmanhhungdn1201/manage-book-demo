@@ -4,18 +4,17 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const User = require('../models/user.model');
 
-module.exports.index = (req, res) => {
-  User.find({}).then(function(users){
-    var page = parseInt(req.query.page) || 1;
-    var perPage = 2;
-    var start = perPage*(page-1);
-    var end = page*perPage;
-    res.render('users/index', {
-      users : users.slice(start, end),
-      page: {
-        pageLength : users.length/2
-      }
-    });
+module.exports.index = async (req, res) => {
+  var users = await User.find();
+  var page = parseInt(req.query.page) || 1;
+  var perPage = 2;
+  var start = perPage*(page-1);
+  var end = page*perPage;
+  res.render('users/index', {
+    users : users.slice(start, end),
+    page: {
+      pageLength : users.length/2
+    }
   });
 };
 
@@ -28,8 +27,8 @@ module.exports.postCreate = (req,res) => {
   bcrypt.genSalt(saltRounds, function(err, salt) {
     bcrypt.hash(defaultPassword, salt, function(err, hash) {
         var id = shortid.generate();
-      console.log(req.body);
-      return;
+        const user = new User();
+        user.
         db.get('users').push({
           id: id,
           email: req.body.email,
