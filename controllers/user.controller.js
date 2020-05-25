@@ -47,29 +47,29 @@ module.exports.postCreate = (req,res) => {
 module.exports.show = async (req,res) => {
   var id = req.params.id;
   var user = await User.findById(id);
-  console.log(user);
   res.render('users/show',{
     user: user
   });
 };
-module.exports.edit = (req,res) => {
+module.exports.edit = async (req,res) => {
   var id = req.params.id;
-  var user = db.get('users').find({id:id}).value();
+  var user = await User.findById(id);
   res.render('users/edit',{
     user: user
   });
 };
-module.exports.update = (req,res) => {
+module.exports.update = async (req,res) => {
   var id = req.params.id;
-  var user = db.get('users').find({id:id}).assign({
-    name: req.body.name,
-    age: req.body.age
-  }).write();
+  var user = await User.findById(id);
+  user.name = req.body.name;
+  user.age = req.body.age;
+  user.save();
   res.redirect('/users');
 };
 
-module.exports.delete = (req,res) => {
+module.exports.delete = async (req,res) => {
   var id = req.params.id;
-  var user = db.get('users').remove({id:id}).write();
+  var user = await User.findById(id);
+  user.remove();
   res.redirect('back');
 };
