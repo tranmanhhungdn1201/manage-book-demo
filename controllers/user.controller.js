@@ -28,18 +28,28 @@ module.exports.postCreate = (req,res) => {
     bcrypt.hash(defaultPassword, salt, function(err, hash) {
         var id = shortid.generate();
         const user = new User();
-        user.
-        db.get('users').push({
+        user.users.push({
           id: id,
           email: req.body.email,
           name: req.body.name,
           age: req.body.age,
           avatar: req.body.avatar,
           password: hash
-          }).write();
+          });
+        user.save(function (err) {
+          if (!err) console.log('Success!');
+        });
+        // db.get('users').push({
+        //   id: id,
+        //   email: req.body.email,
+        //   name: req.body.name,
+        //   age: req.body.age,
+        //   avatar: req.body.avatar,
+        //   password: hash
+        //   }).write();
         });
   });
-  res.redirect('/users');
+  // res.redirect('/users');
 };
 
 module.exports.show = (req,res) => {
