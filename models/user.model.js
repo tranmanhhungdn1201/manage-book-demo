@@ -10,6 +10,6 @@ var userSchema = new Schema({
   isAdmin: Boolean
 });
 
-var User = mongoose.model('User', userSchema, 'manage_book.Users');
+var User = mongoose.model('User', userSchema, 'Users');
 
 module.exports = User;

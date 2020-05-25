@@ -6,20 +6,17 @@ const User = require('../models/user.model');
 
 module.exports.index = (req, res) => {
   User.find({}).then(function(users){
-    console.log(users);
-    console.log(users);
+    var page = parseInt(req.query.page) || 1;
+    var perPage = 2;
+    var start = perPage*(page-1);
+    var end = page*perPage;
+    res.render('users/index', {
+      users : users.slice(start, end),
+      page: {
+        pageLength : users.length/2
+      }
+    });
   });
-  // var page = parseInt(req.query.page) || 1;
-  // var perPage = 2;
-  // var start = perPage*(page-1);
-  // var end = page*perPage;
-  // var users = db.get('users').value();
-  // res.render('users/index', {
-  //   users : users.slice(start, end),
-  //   page: {
-  //     pageLength : users.length/2
-  // }
-  // });
 };
 
 module.exports.create = (req,res) => {
