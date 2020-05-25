@@ -12,7 +12,9 @@ const authMiddleware = require('./middleware/auth.middleware');
 const sessionMiddleware = require('./middleware/session.middleware');
 
 var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGO_CLUSTER_URI).then(() => console.log('DB connnection successful!'));
+mongoose.connect(process.env.MONGO_CLUSTER_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true }).then(() => console.log('DB connnection successful!'));
 
 var cookieParser = require('cookie-parser');
 const sgMail = require('@sendgrid/mail');
