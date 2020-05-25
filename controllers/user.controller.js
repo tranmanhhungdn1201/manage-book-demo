@@ -27,8 +27,7 @@ module.exports.postCreate = (req,res) => {
   bcrypt.genSalt(saltRounds, function(err, salt) {
     bcrypt.hash(defaultPassword, salt, function(err, hash) {
         var id = shortid.generate();
-        const user = new User();
-        user.push({
+        const user = new User({
           id: id,
           email: req.body.email,
           name: req.body.name,
@@ -36,6 +35,7 @@ module.exports.postCreate = (req,res) => {
           avatar: req.body.avatar,
           password: hash
           });
+
         user.save(function (err) {
           console.log(err);
           if (!err) console.log('Success!');
