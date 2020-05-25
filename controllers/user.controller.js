@@ -35,22 +35,13 @@ module.exports.postCreate = (req,res) => {
           avatar: req.body.avatar,
           password: hash
           });
-
         user.save(function (err) {
           console.log(err);
           if (!err) console.log('Success!');
         });
-        // db.get('users').push({
-        //   id: id,
-        //   email: req.body.email,
-        //   name: req.body.name,
-        //   age: req.body.age,
-        //   avatar: req.body.avatar,
-        //   password: hash
-        //   }).write();
         });
   });
-  // res.redirect('/users');
+  res.redirect('/users');
 };
 
 module.exports.show = (req,res) => {
