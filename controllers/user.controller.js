@@ -44,9 +44,9 @@ module.exports.postCreate = (req,res) => {
   res.redirect('/users');
 };
 
-module.exports.show = (req,res) => {
+module.exports.show = async (req,res) => {
   var id = req.params.id;
-  var user = db.get('users').find({id:id}).value();
+  var user = await User.findById(id);
   console.log(user);
   res.render('users/show',{
     user: user
