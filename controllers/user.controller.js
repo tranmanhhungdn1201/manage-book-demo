@@ -4,8 +4,8 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const User = require('../models/user.model');
 
-module.exports.index = (req,res) => {
-  User.find().then(function(users){
+module.exports.index = (req, res) => {
+  User.find({}).then(function(users){
     console.log(users);
     console.log(users);
   });
