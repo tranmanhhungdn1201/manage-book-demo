@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const port = 3000;
+const dotenv = require("dotenv");
 const userRoute = require('./routes/user.route');
 const bookRoute = require('./routes/book.route');
 const loginRoute = require('./routes/login.route');
@@ -11,6 +12,7 @@ const transactionRoute = require('./routes/transaction.route');
 const authMiddleware = require('./middleware/auth.middleware');
 const sessionMiddleware = require('./middleware/session.middleware');
 const apiUserRoute = require('./api/routes/user.route');
+const apiTransactionRoute = require('./api/routes/transaction.route');
 var mongoose = require('mongoose');
 mongoose.connect(process.env.MONGO_CLUSTER_URI, {
   useNewUrlParser: true,
@@ -59,5 +61,6 @@ app.use('/books', bookRoute);
 app.use('/users', authMiddleware.requiredAuth, userRoute);
 app.use('/profile', authMiddleware.requiredAuth, profileRoute);
 app.use('/cart', cartRoute);
-app.use('/api/user',apiUserRoute);
+app.use('/api/user', apiUserRoute);
+app.use('/api/transaction', apiTransactionRoute);
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
