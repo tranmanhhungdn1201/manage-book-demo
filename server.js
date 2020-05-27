@@ -10,7 +10,7 @@ const cartRoute = require('./routes/cart.route');
 const transactionRoute = require('./routes/transaction.route');
 const authMiddleware = require('./middleware/auth.middleware');
 const sessionMiddleware = require('./middleware/session.middleware');
-
+const apiUserRoute = require('./api/routes/user.route');
 var mongoose = require('mongoose');
 mongoose.connect(process.env.MONGO_CLUSTER_URI, {
   useNewUrlParser: true,
@@ -59,4 +59,5 @@ app.use('/books', bookRoute);
 app.use('/users', authMiddleware.requiredAuth, userRoute);
 app.use('/profile', authMiddleware.requiredAuth, profileRoute);
 app.use('/cart', cartRoute);
+app.use('/api/user',apiUserRoute);
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
