@@ -27,10 +27,12 @@ module.exports.postLogin = (req, res, next) => {
       checkLogin = false;
   }
   if(!checkLogin){
-    res.render('login/index', {
-      errors : errors,
-      value: req.body
-    });
+    res.json({
+        message: 'Validate',
+        success: false,
+        errors : errors,
+        value: req.body
+      });
     return;
   }
   var email = req.body.email;
@@ -38,10 +40,12 @@ module.exports.postLogin = (req, res, next) => {
   var user = db.get('users').find({email: email}).value();
   if(!user){
     errors.push('User\'s not exist')
-    res.render('login/index', {
-      errors : errors,
-      value: res.body
-    });
+    res.json({
+        message: 'Tài khoản không tồn tại',
+        success: false,
+        errors : errors,
+        value: req.body
+      });
     return;
   }
   bcrypt.compare(password, user.password, function(err, result) {
@@ -54,12 +58,21 @@ module.exports.postLogin = (req, res, next) => {
           errors : errors,
           value: req.body
         });
+        res.json({
+          message: 'Đăng nhập không thành công',
+          success: false,
+          errors : errors,
+          value: req.body
+        });
         return true;
       }
     res.cookie('userId', user.id, {
       signed : true
     });
-    res.json(user);
+    res.json({
+      message: 'Đăng nhập thành công',
+      success: true
+    });
   });
 
 };
