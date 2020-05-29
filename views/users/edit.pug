@@ -1,13 +1,13 @@
 extends ../common/common
 block content
-  h1 Edit user
+  .container
+    h1.text-center Edit user
     form(action="/users/update/" + user.id, method="POST")
-      label Name:
-      <br>
-      input(type="text", name="name", value=user.name)
-      <br>
-      label Age:
-      <br>
-      input(type="text", name="age", value=user.age)
-      <br>
-      button Submit
+      .form-group
+        label Name:
+        input.form-control(type="text", name="name", value=user.name)
+      .form-group
+        label Age:
+        input.form-control(type="text", name="age", value=user.age)
+      .form-group
+        button.btn.btn-success Submit

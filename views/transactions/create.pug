@@ -1,17 +1,17 @@
 extends ../common/common
 block content
-  h1 Create transaction
+  .container
+    h1 Create transaction
     form(action="/transactions/create", method="POST")
-      label choose user
-      <br>
-      select(name="userId")
-        each user in users
-          option(value=user.id) #{user.name}
-      <br>
-      label choose book
-      <br>
-          select(name="bookId")
-            each book in books
-              option(value=book.id) #{book.title}
-      <br>
-      button(type="submit") Create
+      .form-group
+        label Choose user:
+        select.form-control(name="userId")
+          each user in users
+            option(value=user.id) #{user.name}
+      .form-group
+        label Choose book:
+            select.form-control(name="bookId")
+              each book in books
+                option(value=book.id) #{book.title}
+      .form-group
+        button.btn.btn-success(type="submit") Create

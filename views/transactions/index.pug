@@ -1,16 +1,20 @@
 extends ../common/common
 block content
-  h1 transactions
-  a(href="transactions/create") Create
-  h3 List of transaction
-  ul
-   each transaction in transactions
-    li
-     span=transaction.username
-     <br>
-     span=transaction.book
-     <br>
-     if transaction.isComplete === true
-      span Completed
-     else
-      a(href="transactions/" + transaction.id + "/complete") Complete
+  .container
+    h1.text-center Transactions
+    a.btn.btn-info(href="transactions/create") Create
+    h3 List of transaction
+    table.table
+      tr
+        th User
+        th Book
+        th Status
+        each transaction in transactions
+          tr
+            td=transaction.username
+            td=transaction.book
+            td
+              if transaction.isComplete === true
+                span Completed
+              else
+                a.btn.btn-success.btn-sm(href="transactions/" + transaction.id + "/complete") Complete

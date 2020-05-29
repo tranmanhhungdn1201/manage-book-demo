@@ -15,6 +15,7 @@ const apiUserRoute = require('./api/routes/user.route');
 const apiTransactionRoute = require('./api/routes/transaction.route');
 const apiLoginRoute = require('./api/routes/login.route');
 var mongoose = require('mongoose');
+console.log(process.env.CLOUDINARY_URL);
 mongoose.connect(process.env.MONGO_CLUSTER_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true }).then(() => console.log('DB connnection successful!'));

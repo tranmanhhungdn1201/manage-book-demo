@@ -8,7 +8,7 @@ router.get('/', controller.index);
 
 router.get('/create', controller.create);
 
-router.post('/create', upload.single('image'), controller.postCreate);
+router.post('/create', upload.single('photo'), controller.postCreate);
 
 router.get('/edit/:id', controller.edit);
 

@@ -6,6 +6,6 @@ const upload = multer({dest:'./public/uploads/'});
 
 router.get('/', controller.profile);
 
-router.post('/', upload.single('avatar'),controller.updateAvatar);
+router.post('/', upload.single('avatar'), controller.updateAvatar);
 
 module.exports = router;

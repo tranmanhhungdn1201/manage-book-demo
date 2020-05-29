@@ -1,32 +1,32 @@
 extends ../common/common
 block content
  .container
-  h1 Users
-  a.btn.btn-info(href="users/create") Create
-  h3 List of user
-  table.table
-    tr
-      th Name
-      th Age
-      th Email
-      th Action
-      each user in users
-        tr
-          td=user.name
-          td=user.age
-          td=user.email
-          td
-            a.btn.btn-info.btn-sm.mr-2(href="users/"+ user.id) View
-            a.btn.btn-danger.btn-sm(href="users/" + user.id + "/delete") Delete
-  nav.float-right(aria-label='Page navigation example')
-    ul.pagination
-      li.page-item
-        a.page-link(href='#') Previous
-      li.page-item
-        a.page-link(href='?page=1') 1
-      li.page-item
-        a.page-link(href='?page=2') 2
-      li.page-item
-        a.page-link(href='?page=3') 3
-      li.page-item
-        a.page-link(href='#') Next
+    h1.text-center Users
+    a.btn.btn-info(href="users/create") Create
+    h3 List of user
+    table.table
+      tr
+        th Name
+        th Age
+        th Email
+        th Action
+        each user in users
+          tr
+            td=user.name
+            td=user.age
+            td=user.email
+            td
+              a.btn.btn-info.btn-sm.mr-2(href="users/"+ user.id) View
+              a.btn.btn-danger.btn-sm(href="users/" + user.id + "/delete") Delete
+    nav.float-right(aria-label='Page navigation example')
+      ul.pagination
+        li.page-item
+          a.page-link(href='#') Previous
+        li.page-item
+          a.page-link(href='?page=1') 1
+        li.page-item
+          a.page-link(href='?page=2') 2
+        li.page-item
+          a.page-link(href='?page=3') 3
+        li.page-item
+          a.page-link(href='#') Next

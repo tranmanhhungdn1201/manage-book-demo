@@ -1,6 +1,7 @@
 extends ../common/common
 block content
-  h1 Update profile
+  .container
+    h1.text-center Update profile
     form(action="", method="POST", enctype="multipart/form-data")
       .form-group
         if(userLogin.avatar)

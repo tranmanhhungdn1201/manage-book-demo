@@ -7,10 +7,12 @@ block content
       if userLogin
         ul(class="nav justify-content-center")
           li(class="nav-item mr-2")
-            a(class="nav-item nav-link", href="books/create") Create book
-          li(class="nav-item mr-2")
-            a(class="nav-item nav-link", href="users") Users
-          if userLogin && userLogin.isAdmin
+            a(class="nav-item nav-link", href="profile") Profile
+          if userLogin.isAdmin
+            li(class="nav-item mr-2")
+              a(class="nav-item nav-link", href="books/create") Create book
+            li(class="nav-item mr-2")
+              a(class="nav-item nav-link", href="users") Users
             li(class="nav-item")
               a(class="nav-item nav-link", href="transactions") Transactions
  h3(class="text-center") List of book
@@ -24,11 +26,13 @@ block content
       each book in books
         tr
           td
-              img(src=book.image, width="64")
+              img(src=book.photo, width="64")
           td=book.title
           td=book.description
           td
-            if userLogin && userLogin.isAdmin
-              a.btn.btn-info.btn-sm.mr-2(href="books/edit/"+book.id) Edit
-              a.btn.btn-danger.btn-sm(href="books/"+book.id+"/delete") Delete
-            a.btn.btn-info.btn-sm(href="cart/add-to-cart/"+book.id) Add to cart
+            if userLogin
+              a.btn.btn-info.btn-sm(href="cart/add-to-cart/"+book.id) Add to cart
+              if userLogin.isAdmin
+                a.btn.btn-info.btn-sm.mr-2(href="books/edit/"+book.id) Edit
+                a.btn.btn-danger.btn-sm.mr-2(href="books/"+book.id+"/delete") Delete
+              
